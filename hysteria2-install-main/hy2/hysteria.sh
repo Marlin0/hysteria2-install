@@ -87,7 +87,8 @@ inst_cert(){
             [[ -z $domain ]] && red "未输入域名，无法执行操作！" && exit 1
             green "已输入的域名：$domain" && sleep 1
             green "服务器IP：$ip" && sleep 1
-            domainIP=$(curl -sm8 ipget.net/?ip=${domain})
+            # domainIP=$(curl -sm8 ipget.net/?ip=${domain})
+            domainIP=$(curl -s "http://ip-api.com/json" | jq -r '.query')
             green "域名IP：$domainIP" && sleep 1
             if [[ $domainIP == $ip ]]; then
                 ${PACKAGE_INSTALL[int]} curl wget sudo socat openssl
