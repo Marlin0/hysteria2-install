@@ -88,6 +88,7 @@ inst_cert(){
             green "已输入的域名：$domain" && sleep 1
             green "服务器IP：$ip" && sleep 1
             domainIP=$(curl -sm8 ipget.net/?ip=${domain})
+            green "域名IP：$domainIP" && sleep 1
             if [[ $domainIP == $ip ]]; then
                 ${PACKAGE_INSTALL[int]} curl wget sudo socat openssl
                 if [[ $SYSTEM == "CentOS" ]]; then
