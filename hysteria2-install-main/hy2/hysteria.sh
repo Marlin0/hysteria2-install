@@ -90,7 +90,7 @@ inst_cert(){
             # domainIP=$(curl -sm8 ipget.net/?ip=${domain})
             domainIP=$(curl -sm8 "http://ip-api.com")
             green "域名IP：$domainIP" && sleep 1
-            if [[ $domainIP == $ip ]]; then
+            if [[ "$domainIP" == *"$ip"* ]]; then
                 ${PACKAGE_INSTALL[int]} curl wget sudo socat openssl
                 if [[ $SYSTEM == "CentOS" ]]; then
                     ${PACKAGE_INSTALL[int]} cronie
